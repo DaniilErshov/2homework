@@ -61,7 +61,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-void fak (int n, int k) {  // ôóíêöèÿ
+void fak (int n, int k) {  // Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¿
 	if (n == 0)
 	{
 		std::cout << "fak = " << k << "\n";
