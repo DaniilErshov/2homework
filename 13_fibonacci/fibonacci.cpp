@@ -60,7 +60,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-void fib (int n, int k, int max) {  // функция
+void fib (int n, int k, int max) {  // ГґГіГ­ГЄГ¶ГЁГї
 	int t;
 	if (k + n <= max)
 	{
