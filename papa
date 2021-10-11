@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <ctime>
+using namespace std;
+
+struct Koord
+{
+   double x;
+   double y;
+};
+
+class Rectangle
+{
+    private:
+        Koord M;
+        Koord P;
+    public:
+        Rectangle(Koord mTmp, Koord pTmp)
+        {
+           M.x = min(mTmp.x, pTmp.x);
+           P.x = max(mTmp.x, pTmp.x);
+           M.y = min(mTmp.y, pTmp.y);
+           P.y = max(mTmp.y, pTmp.y);
+        }
+        
+        void checkRectangle(Rectangle recTmp){
+        int flag = 0;
+            if (M.x < recTmp.M.x && recTmp.M.x < P.x)
+            {
+                if (M.y < recTmp.M.y && recTmp.M.y < P.y)
+                {
+                  flag = 1;
+                }
+            }  
+            if (M.x < recTmp.P.x && recTmp.P.x < P.x)
+            { 
+                if (M.y < recTmp.P.y && recTmp.P.y <  P.y)
+                {
+                  flag = 1;
+                }
+            } 
+            
+            if (M.x >  recTmp.M.x && recTmp.M.y < M.y)
+            { 
+                if (P.x < recTmp.P.x && recTmp.P.y >  P.y)
+                {
+                  flag = 1;;
+                }
+            } 
+            
+            if (flag > 0){
+                cout << "yes";
+            } else {
+                cout << "no";
+            }
+            }
+};
+
+
+int main()
+{
+    Koord M,P,mTmp,pTmp;
+    M = {0,0};
+    P = {5,5};
+    mTmp = {-1,-1};
+    pTmp = {7,7};
+    Rectangle rec1(M,P);
+    Rectangle rec2(mTmp,pTmp);
+    rec1.checkRectangle(rec2);
+    return 0;
+}
