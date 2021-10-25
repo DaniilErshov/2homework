@@ -1,0 +1,242 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <ctime>
+
+struct Check
+{
+	bool ch;
+	int value;
+	int znak;
+};
+
+class Massiv
+{
+    private:
+	  int *array;
+	  int n;
+
+    public:
+
+		Massiv()
+		{
+			int i;
+			std::cout << "vvedite kolvo\n";
+			std::cin >> n;
+			int *array = new int[n];
+			for(i=0; i<n; i++)
+			{
+				std::cout << "vvedite " << i << " element\n";
+				std::cin >> array[i];
+
+			}
+		}
+
+		void strCheck(std::string str)
+        {
+	     int i = 0;
+	     Check start;
+		 start.ch = true;
+	     start.znak = 1;
+  	     Check stop;
+	     stop.ch = true;
+ 	     stop.znak = 1;
+	     Check step;
+	     step.znak = 1;
+		 step.ch = true;
+	     std::string tmpString ="";
+
+		if (str[i] == '{')
+		{
+			i++;
+			if(str[i] == '-')
+			{
+				start.znak = -1;
+				i++;
+			} 
+			while (isdigit(str[i]))
+			{
+				tmpString += str[i];
+				i++;
+				if (str[i] == ':')
+				{
+					start.value = stoi(tmpString);
+				}
+			}
+			if(tmpString == "")
+			{
+				start.ch = false;
+			}
+			tmpString = "";
+		}
+
+
+		if (str[i] == ':')
+		{
+			i++;
+			if(str[i] == '-')
+			{
+			    stop.znak = -1;
+				i++;
+			}
+			while (isdigit(str[i]))
+			{
+				tmpString += str[i];
+				i++;
+				if (str[i] == ':')
+				{
+					stop.value = stoi(tmpString);
+				}
+				if (str[i] == '}')
+				{
+					step.value = stoi(tmpString);
+				}
+			}
+			if(tmpString == "")
+			{
+				stop.ch = false;
+			}
+			tmpString = "";
+		}
+		
+		if (str[i] == ':')
+		{
+			i++;
+			if(str[i] == '-')
+			{
+				step.znak = -1;
+				i++;
+			} 
+			while (isdigit(str[i]))
+			{
+				tmpString += str[i];
+				i++;
+				if (str[i] == '}')
+				{
+					step.value = stoi(tmpString);
+				}
+			}
+			if(tmpString == "")
+			{
+				step.ch = false;
+			}
+			tmpString = "";
+		}
+     }
+
+
+};
+void strCheck(std::string str)
+        {
+	     int i = 0;
+	     Check start;
+		 start.ch = false;
+	     start.znak = 1;
+  	     Check stop;
+	     stop.ch = false;
+ 	     stop.znak = 1;
+	     Check step;
+	     step.znak = 1;
+		 step.ch = false;
+	     std::string tmpString ="";
+
+		if (str[i] == '{')
+		{
+			i++;
+			if(str[i] == '-')
+			{
+				start.znak = -1;
+				i++;
+			} 
+			while (isdigit(str[i]))
+			{
+				tmpString += str[i];
+				i++;
+				if (str[i] == ':')
+				{
+					start.value = stoi(tmpString);
+				}
+				start.ch = true;
+			}
+			tmpString = "";
+		}
+
+
+		if (str[i] == ':')
+		{
+			i++;
+			if(str[i] == '-')
+			{
+			    stop.znak = -1;
+				i++;
+			}
+			while (isdigit(str[i]))
+			{
+				tmpString += str[i];
+				if (str[i] == ':')
+				{
+					stop.value = stoi(tmpString);
+				}
+				if (str[i] == '}')
+				{
+					step.value = stoi(tmpString);
+				}
+				stop.ch = true;
+				i++;
+			}
+			tmpString = "";
+		}
+		
+		if (str[i] == ':')
+		{
+			i++;
+			if(str[i] == '-')
+			{
+				step.znak = -1;
+				i++;
+			} 
+			while (isdigit(str[i]))
+			{
+				tmpString += str[i];
+				i++;
+				if (str[i] == '}')
+				{
+					step.value = stoi(tmpString);
+				}
+				step.ch = true;
+			}
+			tmpString = "";
+		}
+
+
+		if(start.ch == false)
+		{
+            std::cout << "none start\n";		
+		} else {
+			std::cout << "start = " << start.value * start.znak << "\n";
+		}
+		if(step.ch == false)
+		{
+			std::cout << "none step\n";
+		} else {
+			std::cout << "step = " << step.value * step.znak << "\n";
+		}
+		if(stop.ch == false)
+		{
+			std::cout << "none stop\n";
+		} else {
+			std::cout << "stop = " << stop.value * stop.znak << "\n";
+		}
+     }
+
+
+
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	strCheck("{:5}");
+	return 0;
+}
